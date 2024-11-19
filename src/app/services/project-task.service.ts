@@ -1,0 +1,42 @@
+import { Injectable } from '@angular/core';
+import { Project } from '../models/project.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProjectTaskService {
+  private projects: Project[] = [
+    { projectId: 1, projectName: 'Project Alpha', description: 'First project', status: 'Active' },
+    { projectId: 2, projectName: 'Project Beta', description: 'Second project', status: 'Completed' },
+  ];
+
+  constructor() {}
+
+  // Get all projects
+  getProjects(): Project[] {
+    return this.projects;
+  }
+
+  // Get a project by ID
+  getProjectById(projectId: number): Project | undefined {
+    return this.projects.find((project) => project.projectId === projectId);
+  }
+
+  // Add a new project
+  addProject(project: Project): void {
+    this.projects.push(project);
+  }
+
+  // Update an existing project
+  updateProject(updatedProject: Project): void {
+    const index = this.projects.findIndex((project) => project.projectId === updatedProject.projectId);
+    if (index !== -1) {
+      this.projects[index] = updatedProject;
+    }
+  }
+
+  // Delete a project
+  deleteProject(projectId: number): void {
+    this.projects = this.projects.filter((project) => project.projectId !== projectId);
+  }
+}
