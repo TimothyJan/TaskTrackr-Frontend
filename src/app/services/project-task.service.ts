@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ProjectTask } from '../models/project-task.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectTaskService {
+
+  private projectTasksChangedSource = new Subject<void>();  // Emit events when department is added
+  projectTasksChanged$ = this.projectTasksChangedSource.asObservable();
 
   private projectTasks: ProjectTask[] = [
     { projectTaskId: 1, projectId: 1, title: 'Task 1', description: 'Task for Project Alpha', status: 'Not Started', progress: 0, startDate: new Date(), dueDate: new Date() , assignedUserId: 2 },
@@ -41,8 +45,8 @@ export class ProjectTaskService {
   }
 
   // Add a new project task
-  addProjectTask(task: ProjectTask): void {
-    this.projectTasks.push(task);
+  addProjectTask(newProjectTask: ProjectTask): void {
+    this.projectTasks.push(newProjectTask);
   }
 
   // Update an existing project task
@@ -56,5 +60,9 @@ export class ProjectTaskService {
   // Delete a project task
   deleteProjectTask(taskId: number): void {
     this.projectTasks = this.projectTasks.filter((task) => task.projectTaskId !== taskId);
+  }
+  /** Emit events for projectTasks update */
+  notifyProjectTasksChanged(): void {
+    this.projectTasksChangedSource.next();
   }
 }

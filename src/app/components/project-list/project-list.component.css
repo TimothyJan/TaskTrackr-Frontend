@@ -1,0 +1,19 @@
+.btn {
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.btn-primary {
+  background-color: #a1c6b6; /* Sage green */
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #789b8e;
+}
+
+.modal-content {
+  background-color: #fdfbf8;
+  border-radius: 10px;
+}

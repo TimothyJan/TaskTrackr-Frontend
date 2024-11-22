@@ -1,0 +1,55 @@
+.pastel-card {
+  background-color: #f8f3f9;
+  border: 1px solid #e5e0e6;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.pastel-badge {
+  background-color: #c4e3d3;
+  color: #355f4f;
+  font-weight: bold;
+}
+
+.text-lavender {
+  color: #6c5c7c;
+}
+
+.form-control-sm {
+  border-radius: 8px;
+  border-color: #ddd;
+}
+
+.btn-primary {
+  background-color: #8b78b8;
+  border-color: #8b78b8;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #755fa1;
+}
+
+.btn-success {
+  background-color: #7ba87e;
+  border-color: #7ba87e;
+  color: #fff;
+}
+
+.btn-success:hover {
+  background-color: #628c65;
+}
+
+.btn-danger {
+  background-color: #cc857d;
+  border-color: #cc857d;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #b46d65;
+}
+
+label {
+  margin-bottom: 0.3rem;
+}

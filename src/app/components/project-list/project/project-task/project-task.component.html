@@ -1,0 +1,86 @@
+<div class="card my-1 shadow-sm pastel-card">
+  <div class="card-body p-1">
+    <!-- Title and Status -->
+    <div class="d-flex justify-content-between align-items-center pb-1">
+      <div>
+        <strong *ngIf="!editMode">{{ projectTask.title }}</strong>
+        <div *ngIf="editMode">
+          Title:
+          <input [(ngModel)]="projectTask.title" class="form-control form-control-sm" />
+        </div>
+      </div>
+
+      <!-- Status -->
+      <span *ngIf="!editMode" class="badge bg-info">{{ projectTask.status }}</span>
+      <div *ngIf="editMode">
+        Status:
+        <select [(ngModel)]="projectTask.status" class="form-select form-select-sm">
+          <option value="Not Started">Not Started</option>
+          <option value="Active">Active</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <p *ngIf="!editMode">{{ projectTask.description }}</p>
+    <div *ngIf="editMode">
+      Description:
+      <textarea [(ngModel)]="projectTask.description" rows="3" class="form-control form-control-sm"></textarea>
+    </div>
+
+    <!-- Progress, Start Date, Due Date, and Assigned User ID -->
+    <div class="text-muted">
+      <span *ngIf="!editMode">Progress: {{ projectTask.progress }}% <br /></span>
+      <div *ngIf="editMode">
+        Progress:
+        <input
+          type="number"
+          [(ngModel)]="projectTask.progress"
+          min="0"
+          max="100"
+          class="form-control form-control-sm"
+          placeholder="Progress (%)"
+        />
+      </div>
+
+      <span *ngIf="!editMode">Start Date: {{ projectTask.startDate | date: 'shortDate' }} <br /></span>
+      <div *ngIf="editMode">
+        Start Date:
+        <input
+          type="date"
+          [(ngModel)]="startDateString"
+          class="form-control form-control-sm"
+        />
+      </div>
+
+      <span *ngIf="!editMode">Due Date: {{ projectTask.dueDate | date: 'shortDate' }} <br /></span>
+      <div *ngIf="editMode">
+        Due Date:
+        <input
+          type="date"
+          [(ngModel)]="dueDateString"
+          class="form-control form-control-sm"
+        />
+      </div>
+
+      <span *ngIf="!editMode">Assigned User ID: {{ projectTask.assignedUserId || 'Unassigned' }} <br /></span>
+      <div *ngIf="editMode">
+        Assigned User ID:
+        <input
+          type="number"
+          [(ngModel)]="projectTask.assignedUserId"
+          class="form-control form-control-sm"
+          placeholder="Assigned User ID"
+        />
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-end pt-2">
+      <button *ngIf="!editMode" class="btn btn-sm btn-primary me-2" (click)="enterEditMode()">Edit</button>
+      <button *ngIf="editMode" class="btn btn-sm btn-success me-2" (click)="saveChanges()">Save</button>
+      <button class="btn btn-sm btn-danger" (click)="deleteProjectTask()">Delete</button>
+    </div>
+  </div>
+</div>

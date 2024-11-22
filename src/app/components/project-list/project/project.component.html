@@ -1,0 +1,11 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h5 class="card-title text-muted">{{ project.projectName }} - <span>{{ project.status }}</span> - <span>    <button class="btn btn-success btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#createTaskModal">Add Task</button></span></h5>
+    <p class="card-text">{{ project.description }}</p>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let projectTaskId of listOfProjectTaskIds" class="list-group-item">
+        <app-project-task [projectTaskId]="projectTaskId"></app-project-task>
+      </li>
+    </ul>
+  </div>
+</div>

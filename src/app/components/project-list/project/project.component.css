@@ -1,0 +1,35 @@
+.card {
+  background-color: #fdfbf8; /* Light cream */
+  border: 1px solid #dcd5d1;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.btn-primary {
+  background-color: #a1c6b6; /* Sage green */
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #789b8e;
+}
+
+.btn-success {
+  background-color: #c8d6e5; /* Soft lavender */
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #9ba9c1;
+}
