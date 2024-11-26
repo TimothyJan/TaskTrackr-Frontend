@@ -4,6 +4,7 @@
 </div>
 <div class="modal-body">
   <form>
+    <!-- Task Name -->
     <div class="mb-3">
       <label for="taskName" class="form-label">Task Name</label>
       <input
@@ -12,8 +13,26 @@
         name="taskName"
         class="form-control"
         id="taskName"
+        [ngClass]="{'is-invalid': titleInvalid}"
       />
+      <div *ngIf="titleInvalid" class="invalid-feedback">Task name is required.</div>
     </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        [(ngModel)]="projectTask.description"
+        name="description"
+        class="form-control"
+        id="description"
+        rows="3"
+        [ngClass]="{'is-invalid': descriptionInvalid}"
+      ></textarea>
+      <div *ngIf="descriptionInvalid" class="invalid-feedback">Description is required.</div>
+    </div>
+
+    <!-- Start Date -->
     <div class="mb-3">
       <label for="startDate" class="form-label">Start Date</label>
       <input
@@ -24,6 +43,8 @@
         id="startDate"
       />
     </div>
+
+    <!-- Due Date -->
     <div class="mb-3">
       <label for="dueDate" class="form-label">Due Date</label>
       <input
@@ -34,6 +55,8 @@
         id="dueDate"
       />
     </div>
+
+    <!-- Status  -->
     <div class="mb-3">
       <label for="status" class="form-label">Status</label>
       <select
@@ -45,6 +68,22 @@
         <option value="Not Started">Not Started</option>
         <option value="In Progress">In Progress</option>
         <option value="Completed">Completed</option>
+      </select>
+    </div>
+
+    <!-- Assigned User Dropdown -->
+    <div class="mb-3">
+      <label for="assignedUser" class="form-label">Assigned User</label>
+      <select
+        [(ngModel)]="projectTask.assignedUserId"
+        name="assignedUser"
+        class="form-select"
+        id="assignedUser"
+      >
+        <option [value]="null">Unassigned</option>
+        <option *ngFor="let user of users" [value]="user.userId">
+          {{ user.name }} - {{ user.role }}
+        </option>
       </select>
     </div>
   </form>

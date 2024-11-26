@@ -7,9 +7,9 @@ import { User } from '../models/user.model';
 export class UserService {
 
   private users: User[] = [
-    { userId: 1, name: 'Alice Johnson', email: 'alice@example.com', role: 'Manager' },
-    { userId: 2, name: 'Bob Smith', email: 'bob@example.com', role: 'Developer' },
-    { userId: 3, name: 'Charlie Brown', email: 'charlie@example.com', role: 'Tester' },
+    new User(1, 'Alice Johnson', 'alice@example.com', 'Manager'),
+    new User(2, 'Bob Smith', 'bob@example.com', 'Developer'),
+    new User(3, 'Charlie Brown', 'charlie@example.com', 'Tester')
   ];
 
   constructor() {}

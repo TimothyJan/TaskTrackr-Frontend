@@ -21,7 +21,6 @@ export class ProjectTask {
     assignedUserId?: number | null
   ) {
     this.projectTaskId = projectTaskId;
-    this.projectTaskId = projectTaskId,
     this.projectId = projectId,
     this.title = title,
     this.description = description,

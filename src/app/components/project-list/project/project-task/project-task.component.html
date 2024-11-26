@@ -6,12 +6,13 @@
         <strong *ngIf="!editMode">{{ projectTask.title }}</strong>
         <div *ngIf="editMode">
           Title:
-          <input [(ngModel)]="projectTask.title" class="form-control form-control-sm" />
+          <input [(ngModel)]="projectTask.title" class="form-control form-control-sm" [ngClass]="{'is-invalid': titleInvalid}"/>
+          <div *ngIf="titleInvalid" class="invalid-feedback">Task name is required.</div>
         </div>
       </div>
 
       <!-- Status -->
-      <span *ngIf="!editMode" class="badge bg-info">{{ projectTask.status }}</span>
+      <span *ngIf="!editMode && projectTask.status" class="badge bg-info">{{ projectTask.status }}</span>
       <div *ngIf="editMode">
         Status:
         <select [(ngModel)]="projectTask.status" class="form-select form-select-sm">
@@ -26,7 +27,8 @@
     <p *ngIf="!editMode">{{ projectTask.description }}</p>
     <div *ngIf="editMode">
       Description:
-      <textarea [(ngModel)]="projectTask.description" rows="3" class="form-control form-control-sm"></textarea>
+      <textarea [(ngModel)]="projectTask.description" rows="3" class="form-control form-control-sm" [ngClass]="{'is-invalid': descriptionInvalid}"></textarea>
+      <div *ngIf="descriptionInvalid" class="invalid-feedback">Description is required.</div>
     </div>
 
     <!-- Progress, Start Date, Due Date, and Assigned User ID -->
@@ -44,7 +46,7 @@
         />
       </div>
 
-      <span *ngIf="!editMode">Start Date: {{ projectTask.startDate | date: 'shortDate' }} <br /></span>
+      <span *ngIf="!editMode && projectTask.startDate">Start Date: {{ projectTask.startDate | date: 'shortDate' }} <br /></span>
       <div *ngIf="editMode">
         Start Date:
         <input
@@ -54,7 +56,7 @@
         />
       </div>
 
-      <span *ngIf="!editMode">Due Date: {{ projectTask.dueDate | date: 'shortDate' }} <br /></span>
+      <span *ngIf="!editMode && projectTask.dueDate">Due Date: {{ projectTask.dueDate | date: 'shortDate' }} <br /></span>
       <div *ngIf="editMode">
         Due Date:
         <input
@@ -64,15 +66,21 @@
         />
       </div>
 
-      <span *ngIf="!editMode">Assigned User ID: {{ projectTask.assignedUserId || 'Unassigned' }} <br /></span>
+      <div *ngIf="!editMode">
+        <span>Assigned User: {{ getUserById(projectTask.assignedUserId!) }}</span>
+      </div>
       <div *ngIf="editMode">
-        Assigned User ID:
-        <input
-          type="number"
+        <label for="assignedUser">Assigned User:</label>
+        <select
+          id="assignedUser"
           [(ngModel)]="projectTask.assignedUserId"
-          class="form-control form-control-sm"
-          placeholder="Assigned User ID"
-        />
+          class="form-select form-select-sm"
+        >
+          <option [value]="null">Unassigned</option>
+          <option *ngFor="let user of users" [value]="user.userId">
+            {{ user.name }} - {{ user.role }}
+          </option>
+        </select>
       </div>
     </div>
 

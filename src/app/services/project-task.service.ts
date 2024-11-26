@@ -48,7 +48,6 @@ export class ProjectTaskService {
   addProjectTask(newProjectTask: ProjectTask): void {
     newProjectTask.projectTaskId = this.projectTasks.length+1;
     this.projectTasks.push(newProjectTask);
-    console.log(this.projectTasks);
   }
 
   // Update an existing project task
@@ -60,8 +59,12 @@ export class ProjectTaskService {
   }
 
   // Delete a project task
-  deleteProjectTask(taskId: number): void {
-    this.projectTasks = this.projectTasks.filter((task) => task.projectTaskId !== taskId);
+  deleteProjectTask(projectTaskId: number): void {
+    const index = this.projectTasks.findIndex(task => task.projectTaskId === projectTaskId);
+    if (index !== -1) {
+      this.projectTasks.splice(index, 1);
+      this.projectTasksChangedSource.next(); // Notify subscribers that the task list has changed
+    }
   }
 
   /** Emit events for projectTasks update */

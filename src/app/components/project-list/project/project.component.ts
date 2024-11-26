@@ -35,6 +35,11 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     this.getProjectById();
     this.getListOfProjectTaskIdsByProjectId();
+
+    // Subscribe to changes in the task list
+    this._projectTaskService.projectTasksChanged$.subscribe(() => {
+      this.getListOfProjectTaskIdsByProjectId(); // Refresh the list after a task is deleted
+    });
   }
 
   getProjectById(): void {
