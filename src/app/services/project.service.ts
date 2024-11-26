@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../models/project.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
+
+  private projectsChangedSource = new Subject<void>();  // Emit events when department is added
+  projectsChanged$ = this.projectsChangedSource.asObservable();
 
   private projects: Project[] = [
     { projectId: 1, projectName: 'Project Alpha', description: 'First project', status: 'Active' },
@@ -47,5 +51,10 @@ export class ProjectService {
   // Delete a project
   deleteProject(projectId: number): void {
     this.projects = this.projects.filter((project) => project.projectId !== projectId);
+  }
+
+  /** Emit events for projects update */
+  notifyProjectsChanged(): void {
+    this.projectsChangedSource.next();
   }
 }

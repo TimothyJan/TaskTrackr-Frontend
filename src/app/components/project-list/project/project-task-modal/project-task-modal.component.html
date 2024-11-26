@@ -1,0 +1,55 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Task</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="mb-3">
+      <label for="taskName" class="form-label">Task Name</label>
+      <input
+        type="text"
+        [(ngModel)]="projectTask.title"
+        name="taskName"
+        class="form-control"
+        id="taskName"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="startDate" class="form-label">Start Date</label>
+      <input
+        type="date"
+        [(ngModel)]="startDateString"
+        name="startDate"
+        class="form-control"
+        id="startDate"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="dueDate" class="form-label">Due Date</label>
+      <input
+        type="date"
+        [(ngModel)]="dueDateString"
+        name="dueDate"
+        class="form-control"
+        id="dueDate"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="status" class="form-label">Status</label>
+      <select
+        [(ngModel)]="projectTask.status"
+        name="status"
+        class="form-select"
+        id="status"
+      >
+        <option value="Not Started">Not Started</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+      </select>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="addProjectTask()">Save Task</button>
+  <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+</div>

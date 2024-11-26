@@ -1,35 +1,89 @@
+/* Card Styling */
 .card {
-  background-color: #fdfbf8; /* Light cream */
-  border: 1px solid #dcd5d1;
-  border-radius: 10px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #f7f2ef; /* Warm beige */
+  border: 1px solid #e1ddd9;
+  border-radius: 12px;
+  padding: 16px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
+/* Button Styling */
 .btn {
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 0.9rem;
+  font-weight: 600;
   border-radius: 8px;
 }
 
 .btn-primary {
-  background-color: #a1c6b6; /* Sage green */
+  background-color: #99bfa6; /* Sage green */
+  color: #fff;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #789b8e;
+  background-color: #7a9e88;
 }
 
 .btn-success {
-  background-color: #c8d6e5; /* Soft lavender */
+  background-color: #c7cadf; /* Soft lavender */
+  color: #fff;
   border: none;
 }
 
 .btn-success:hover {
-  background-color: #9ba9c1;
+  background-color: #a8adc9;
+}
+
+.btn-danger {
+  background-color: #d7a19e; /* Warm pastel pink */
+  color: #fff;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #b17c79;
+}
+
+/* Badge Styling */
+.badge {
+  font-size: 0.85rem;
+  padding: 0.4em 0.6em;
+}
+
+.badge.bg-info {
+  background-color: #e2d3d9; /* Muted lavender */
+  color: white;
+}
+
+/* Input and Textarea Styling */
+input.form-control,
+textarea.form-control {
+  border: 1px solid #d5d2cf;
+  border-radius: 8px;
+  background-color: #fdfbf8; /* Light cream */
+}
+
+input.form-control:focus,
+textarea.form-control:focus {
+  border-color: #99bfa6; /* Sage green */
+  box-shadow: 0 0 0 0.2rem rgba(153, 191, 166, 0.25);
+}
+
+/* List Group Styling */
+.list-group-item {
+  background-color: #f7f2ef; /* Warm beige */
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.list-group-item:hover {
+  background-color: #ebe7e4; /* Slightly darker beige */
 }

@@ -11,10 +11,10 @@ export class ProjectTaskService {
   projectTasksChanged$ = this.projectTasksChangedSource.asObservable();
 
   private projectTasks: ProjectTask[] = [
-    { projectTaskId: 1, projectId: 1, title: 'Task 1', description: 'Task for Project Alpha', status: 'Not Started', progress: 0, startDate: new Date(), dueDate: new Date() , assignedUserId: 2 },
-    { projectTaskId: 2, projectId: 1, title: 'Task 2', description: 'Another Task for Project Alpha', status: 'Active', progress: 50, startDate: new Date(), dueDate: new Date(), assignedUserId: 3 },
-    { projectTaskId: 3, projectId: 2, title: 'Task 3', description: 'Task for Project Beta', status: 'Completed', progress: 100, startDate: new Date(), dueDate: new Date(), assignedUserId: null },
-    { projectTaskId: 4, projectId: 2, title: 'Task 4', description: 'Another Task for Project Beta', status: 'Active', progress: 75, startDate: new Date(), dueDate: new Date(), assignedUserId: 1 },
+    new ProjectTask(1, 1, 'Task 1', 'Task for Project Alpha', 'Not Started', 0, new Date(), new Date(), 2),
+    new ProjectTask(2, 1, 'Task 2', 'Another Task for Project Alpha', 'Active', 50, new Date(), new Date(), 3 ),
+    new ProjectTask(3, 2, 'Task 3', 'Task for Project Beta', 'Completed', 100, new Date(), new Date(), null ),
+    new ProjectTask(4, 2, 'Task 4', 'Another Task for Project Beta', 'Active', 75, new Date(), new Date(), 1 )
   ];
 
   constructor() {}
@@ -46,7 +46,9 @@ export class ProjectTaskService {
 
   // Add a new project task
   addProjectTask(newProjectTask: ProjectTask): void {
+    newProjectTask.projectTaskId = this.projectTasks.length+1;
     this.projectTasks.push(newProjectTask);
+    console.log(this.projectTasks);
   }
 
   // Update an existing project task
@@ -61,6 +63,7 @@ export class ProjectTaskService {
   deleteProjectTask(taskId: number): void {
     this.projectTasks = this.projectTasks.filter((task) => task.projectTaskId !== taskId);
   }
+
   /** Emit events for projectTasks update */
   notifyProjectTasksChanged(): void {
     this.projectTasksChangedSource.next();

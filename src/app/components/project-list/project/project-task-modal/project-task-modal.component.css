@@ -1,0 +1,19 @@
+.modal-content {
+  background-color: #f8f3f9; /* Light pastel background */
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.modal-header {
+  border-bottom: 1px solid #e5e0e6;
+}
+
+.btn-success {
+  background-color: #7ba87e;
+  border-color: #7ba87e;
+  color: #fff;
+}
+
+.btn-success:hover {
+  background-color: #628c65;
+}

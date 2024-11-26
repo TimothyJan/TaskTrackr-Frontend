@@ -1,11 +1,80 @@
 <div class="card shadow-sm">
   <div class="card-body">
-    <h5 class="card-title text-muted">{{ project.projectName }} - <span>{{ project.status }}</span> - <span>    <button class="btn btn-success btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#createTaskModal">Add Task</button></span></h5>
-    <p class="card-text">{{ project.description }}</p>
-    <ul class="list-group list-group-flush">
+    <!-- Header with Title and Status -->
+    <div class="d-flex justify-content-between align-items-center mb-1">
+      <div>
+        <h5 *ngIf="!editMode" class="card-title text-muted">
+          {{ project.projectName }} -
+          <span class="badge bg-info">{{ project.status }}</span>
+        </h5>
+        <div *ngIf="editMode">
+          <label class="form-label">Name:</label>
+          <input
+            type="text"
+            [(ngModel)]="project.projectName"
+            class="form-control form-control-sm"
+            placeholder="Project Name"
+          />
+          <label class="form-label mt-2">Status:</label>
+          <select [(ngModel)]="project.status" class="form-select form-select-sm">
+            <option value="Not Started">Not Started</option>
+            <option value="Active">Active</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div>
+        <button
+          *ngIf="!editMode"
+          class="btn btn-primary btn-sm me-2"
+          (click)="enterEditMode()"
+        >
+          <i class="bi bi-pencil-square"></i>
+        </button>
+        <button
+          *ngIf="editMode"
+          class="btn btn-success btn-sm me-2"
+          (click)="saveChanges()"
+        >
+          <i class="bi bi-save"></i>
+        </button>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="deleteProject()"
+        >
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <p *ngIf="!editMode">{{ project.description }}</p>
+      <div *ngIf="editMode">
+        <label class="form-label">Description:</label>
+        <textarea
+          [(ngModel)]="project.description"
+          rows="3"
+          class="form-control form-control-sm"
+          placeholder="Project Description"
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- List of Project Tasks -->
+    <ul class="list-group">
       <li *ngFor="let projectTaskId of listOfProjectTaskIds" class="list-group-item">
         <app-project-task [projectTaskId]="projectTaskId"></app-project-task>
       </li>
     </ul>
   </div>
+
+  <button
+    class="btn btn-success btn-sm"
+    (click)="openAddProjectTaskModal()"
+  >
+    Add Task
+  </button>
 </div>
