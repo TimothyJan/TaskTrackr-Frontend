@@ -22,6 +22,7 @@ export class ProjectService {
     return this.projects;
   }
 
+  /** Get list of all projectIds */
   getListOfProjectIds(): number[] {
     let listOfProjectIds: number[] = [];
     this.projects.forEach((project) => {
@@ -36,8 +37,9 @@ export class ProjectService {
   }
 
   // Add a new project
-  addProject(project: Project): void {
-    this.projects.push(project);
+  addProject(newProject: Project): void {
+    newProject.projectId = this.projects.length+1;
+    this.projects.push(newProject);
   }
 
   // Update an existing project
@@ -50,7 +52,11 @@ export class ProjectService {
 
   // Delete a project
   deleteProject(projectId: number): void {
-    this.projects = this.projects.filter((project) => project.projectId !== projectId);
+    const index = this.projects.findIndex(project => project.projectId === projectId);
+    if (index !== -1) {
+      this.projects.splice(index, 1);
+      this.projectsChangedSource.next(); // Notify subscribers that the project list has changed
+    }
   }
 
   /** Emit events for projects update */

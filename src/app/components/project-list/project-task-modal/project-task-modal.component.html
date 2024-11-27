@@ -2,6 +2,7 @@
   <h4 class="modal-title">Add Task</h4>
   <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
 </div>
+
 <div class="modal-body">
   <form>
     <!-- Task Name -->
@@ -27,8 +28,9 @@
         class="form-control"
         id="description"
         rows="3"
-        [ngClass]="{'is-invalid': descriptionInvalid}"
-      ></textarea>
+        placeholder="Enter project task description"
+        [ngClass]="{'is-invalid': descriptionInvalid}">
+      </textarea>
       <div *ngIf="descriptionInvalid" class="invalid-feedback">Description is required.</div>
     </div>
 
@@ -36,8 +38,8 @@
     <div class="mb-3">
       <label for="startDate" class="form-label">Start Date</label>
       <input
-        type="date"
         [(ngModel)]="startDateString"
+        type="date"
         name="startDate"
         class="form-control"
         id="startDate"
@@ -48,8 +50,8 @@
     <div class="mb-3">
       <label for="dueDate" class="form-label">Due Date</label>
       <input
-        type="date"
         [(ngModel)]="dueDateString"
+        type="date"
         name="dueDate"
         class="form-control"
         id="dueDate"
@@ -88,6 +90,7 @@
     </div>
   </form>
 </div>
+
 <div class="modal-footer">
   <button type="button" class="btn btn-primary" (click)="addProjectTask()">Save Task</button>
   <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>

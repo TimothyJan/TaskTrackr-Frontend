@@ -1,6 +1,7 @@
 <div class="card shadow-sm">
   <div class="card-body">
-    <!-- Header with Title and Status -->
+
+    <!-- Name and Status -->
     <div class="d-flex justify-content-between align-items-center mb-1">
       <div>
         <h5 *ngIf="!editMode" class="card-title text-muted">
@@ -26,6 +27,12 @@
 
       <!-- Action Buttons -->
       <div>
+        <button
+          class="btn btn-secondary btn-sm me-2"
+          (click)="openAddProjectTaskModal()"
+        >
+          <i class="bi bi-plus-circle"></i>
+        </button>
         <button
           *ngIf="!editMode"
           class="btn btn-primary btn-sm me-2"
@@ -69,12 +76,6 @@
         <app-project-task [projectTaskId]="projectTaskId"></app-project-task>
       </li>
     </ul>
-  </div>
 
-  <button
-    class="btn btn-success btn-sm"
-    (click)="openAddProjectTaskModal()"
-  >
-    Add Task
-  </button>
+  </div>
 </div>

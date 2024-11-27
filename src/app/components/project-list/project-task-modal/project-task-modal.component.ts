@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ProjectTask } from '../../../../models/project-task.model';
+import { ProjectTask } from '../../../models/project-task.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ProjectTaskService } from '../../../../services/project-task.service';
-import { UserService } from '../../../../services/user.service';
-import { User } from '../../../../models/user.model';
+import { ProjectTaskService } from '../../../services/project-task.service';
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-project-task-modal',
@@ -58,6 +58,7 @@ export class ProjectTaskModalComponent implements OnInit {
     this.descriptionInvalid = !this.projectTask.description.trim();
   }
 
+  /** Add ProjectTask */
   addProjectTask(): void {
     this.validateFields(); // Validate fields before saving
 
@@ -71,16 +72,18 @@ export class ProjectTaskModalComponent implements OnInit {
     // String to number conversion for assignedUser
     this.projectTask.assignedUserId = Number(this.projectTask.assignedUserId);
 
-    // Update ProjectTask
+    // Add ProjectTask
     this._projectTaskService.addProjectTask(this.projectTask);
 
     // Clear the form
     this.projectTask = new ProjectTask(0, 0, "", "", "Not Started", 0);
     this.startDateString = '';
     this.dueDateString = '';
+
     this.closeModal();
   }
 
+  /** Close the Modal */
   closeModal(): void {
     this.activeModal.close(); // Pass result back to parent
   }

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Project } from '../../models/project.model';
 import { ProjectService } from '../../services/project.service';
-import { ProjectTaskService } from '../../services/project-task.service';
-import { ProjectTask } from '../../models/project-task.model';
 import { ProjectComponent } from "./project/project.component";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProjectModalComponent } from './project-modal/project-modal.component';
 
 @Component({
   selector: 'app-project-list',
@@ -21,36 +20,33 @@ export class ProjectListComponent implements OnInit{
 
   constructor(
     private _projectService: ProjectService,
-    private _projectTaskService: ProjectTaskService
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
-      this.getListOfProjectIds();
+    this.getListOfProjectIds();
   }
 
+  /** Get list of ProjectIds */
   getListOfProjectIds(): void {
     this.listOfProjectIds = this._projectService.getListOfProjectIds();
   }
 
-  // addProject() {
-  //   const newProject: Project = {
-  //     projectId: Date.now(),
-  //     projectName: `Project ${this.projects.length + 1}`,
-  //     description: 'New project description',
-  //     status: 'Active'
-  //   };
-  //   this.projects.push(newProject);
-  // }
+  /** Open ProjectModal and refresh list of ProjectIds  */
+  openAddProjectModal(): void {
+    const modalRef = this.modalService.open(ProjectModalComponent, {
+      size: 'md',
+      backdrop: 'static', // Optional: Prevent closing on outside click
+      keyboard: true, // Optional: Allow closing via the Escape key
+    });
 
-  // editProject(project: Project) {
-  //   alert(`Editing project: ${project.projectName}`);
-  // }
-
-  // deleteProject(projectId: number) {
-  //   this.projects = this.projects.filter(p => p.projectId !== projectId);
-  // }
-
-  // addTask(projectId: number) {
-  //   alert(`Adding task to project ID: ${projectId}`);
-  // }
+    modalRef.result
+    .then((result) => {
+      // console.log('Modal closed with result:', result);
+      this.getListOfProjectIds();
+    })
+    .catch((error) => {
+      // console.error('Modal dismissed with error:', error);
+    });
+  }
 }

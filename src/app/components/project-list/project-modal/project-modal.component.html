@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="createProjectModalLabel">Create New Project</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+</div>
+
+<div class="modal-body">
+  <form>
+    <!-- Project Name -->
+    <div class="mb-3">
+      <label for="projectName" class="form-label">Project Name</label>
+      <input
+        [(ngModel)]="project.projectName"
+        type="text"
+        name="projectName"
+        class="form-control"
+        id="projectName"
+        placeholder="Enter project name"
+        [ngClass]="{'is-invalid': nameInvalid}">
+        <div *ngIf="nameInvalid" class="invalid-feedback">Project name is required.</div>
+    </div>
+
+    <!-- Project Description -->
+    <div class="mb-3">
+      <label for="projectDescription" class="form-label">Description</label>
+      <textarea
+        [(ngModel)]="project.description"
+        name="projectDescription"
+        class="form-control"
+        id="projectDescription"
+        rows="3"
+        placeholder="Enter project description"
+        [ngClass]="{'is-invalid': descriptionInvalid}">
+      </textarea>
+      <div *ngIf="descriptionInvalid" class="invalid-feedback">Description is required.</div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="submit" class="btn btn-primary" (click)="addProject()">Create Project</button>
+  <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+</div>

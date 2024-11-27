@@ -1,12 +1,11 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ProjectTask } from '../../../models/project-task.model';
 import { ProjectTaskService } from '../../../services/project-task.service';
 import { ProjectService } from '../../../services/project.service';
 import { Project } from '../../../models/project.model';
-import { ProjectTaskComponent } from "./project-task/project-task.component";
-import { ProjectTaskModalComponent } from "./project-task-modal/project-task-modal.component";
+import { ProjectTaskComponent } from '../project-task/project-task.component';
+import { ProjectTaskModalComponent } from "../project-task-modal/project-task-modal.component";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -42,24 +41,29 @@ export class ProjectComponent implements OnInit {
     });
   }
 
+  /** Get Project by ID */
   getProjectById(): void {
     this.project = this._projectService.getProjectById(this.projectId);
   }
 
+  /** Get list of ProjectTaskIds by ProjectId */
   getListOfProjectTaskIdsByProjectId(): void {
     this.listOfProjectTaskIds = this._projectTaskService.getListOfProjectTaskIdsByProjectIds(this.projectId);
   }
 
+  /** Edit Mode */
   enterEditMode(): void {
     this.editMode = true;
   }
 
+  /** Save project and exit editMode */
   saveChanges(): void {
     this._projectService.updateProject(this.project);
     this._projectService.notifyProjectsChanged();
     this.editMode = false; // Exit edit mode
   }
 
+  /**Delete Project */
   deleteProject(): void {
     const confirmDelete = confirm('Are you sure you want to delete this projectTask?');
     if (confirmDelete) {
@@ -68,6 +72,7 @@ export class ProjectComponent implements OnInit {
     }
   }
 
+  /** Open ProjectTaskModal and refresh list of ProjectTaskIds */
   openAddProjectTaskModal(): void {
     const modalRef = this.modalService.open(ProjectTaskModalComponent, {
       size: 'md',
