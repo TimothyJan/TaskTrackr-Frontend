@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  private usersChangedSource = new Subject<void>();  // Emit events when department is added
+  usersChanged$ = this.usersChangedSource.asObservable();
 
   private users: User[] = [
     new User(1, 'Alice Johnson', 'alice@example.com', 'Manager'),
@@ -25,8 +29,9 @@ export class UserService {
   }
 
   // Add a new user
-  addUser(user: User): void {
-    this.users.push(user);
+  addUser(newUser: User): void {
+    newUser.userId = this.users.length+1;
+    this.users.push(newUser);
   }
 
   // Update an existing user
@@ -39,6 +44,15 @@ export class UserService {
 
   // Delete a user
   deleteUser(userId: number): void {
-    this.users = this.users.filter((user) => user.userId !== userId);
+    const index = this.users.findIndex(user => user.userId === userId);
+    if (index !== -1) {
+      this.users.splice(index, 1);
+      this.usersChangedSource.next(); // Notify subscribers that the user list has changed
+    }
+  }
+
+  /** Emit events for projects update */
+  notifyUsersChanged(): void {
+    this.usersChangedSource.next();
   }
 }

@@ -1,0 +1,59 @@
+.btn {
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.btn-primary {
+  background-color: #a1c6b6;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #789b8e;
+}
+
+.modal-content {
+  background-color: #fdfbf8;
+  border-radius: 10px;
+}
+
+.card {
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  border: none;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+.card-text {
+  font-size: 0.95rem;
+}
+
+.btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}

@@ -32,6 +32,11 @@ export class ProjectModalComponent {
     this.descriptionInvalid = !this.project.description.trim();
   }
 
+  /** Clear the form */
+  clearForm(): void {
+    this.project = new Project(0, "", "", "Not Started");
+  }
+
   /** Add Project */
   addProject(): void {
     this.validateFields(); // Validate fields before saving
@@ -40,11 +45,7 @@ export class ProjectModalComponent {
       return; // Prevent saving if there are validation errors
     }
 
-    // Add Project
     this._projectService.addProject(this.project);
-
-    // Clear the form
-    this.project = new Project(0, "", "", "Not Started");
 
     this.closeModal();
   }

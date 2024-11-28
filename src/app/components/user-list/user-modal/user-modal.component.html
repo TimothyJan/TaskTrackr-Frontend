@@ -1,0 +1,58 @@
+<div class="modal-header">
+  <h5 *ngIf="!user.userId" class="modal-title" id="createUserModalLabel">Create New User</h5>
+  <h5 *ngIf="user.userId" class="modal-title" id="createUserModalLabel">Edit User</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+</div>
+
+<div class="modal-body">
+  <form>
+    <!-- User Name -->
+    <div class="mb-3">
+      <label for="userName" class="form-label">Name</label>
+      <input
+        [(ngModel)]="user.name"
+        type="text"
+        name="userName"
+        class="form-control"
+        id="userName"
+        placeholder="Enter user name"
+        [ngClass]="{'is-invalid': nameInvalid}">
+      <div *ngIf="nameInvalid" class="invalid-feedback">Name is required.</div>
+    </div>
+
+    <!-- User Email -->
+    <div class="mb-3">
+      <label for="userEmail" class="form-label">Email</label>
+      <input
+        [(ngModel)]="user.email"
+        type="email"
+        name="userEmail"
+        class="form-control"
+        id="userEmail"
+        placeholder="Enter email"
+        [ngClass]="{'is-invalid': emailInvalid}">
+      <div *ngIf="emailInvalid" class="invalid-feedback">Email is required.</div>
+    </div>
+
+    <!-- Role -->
+    <div class="mb-3">
+      <label for="userRole" class="form-label">Role</label>
+      <input
+        [(ngModel)]="user.role"
+        type="text"
+        name="userRole"
+        class="form-control"
+        id="userRole"
+        placeholder="Enter role"
+        [ngClass]="{'is-invalid': roleInvalid}">
+        <div *ngIf="roleInvalid" class="invalid-feedback">Role is required.</div>
+    </div>
+
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button *ngIf="!user.userId" type="submit" class="btn btn-primary" (click)="addUser()">Create User</button>
+  <button *ngIf="user.userId" type="submit" class="btn btn-primary" (click)="updateUser()">Save User</button>
+  <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+</div>
