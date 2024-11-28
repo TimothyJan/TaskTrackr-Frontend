@@ -1,5 +1,5 @@
 # TaskTrackr-Frontend
-TaskTrackr Frontend
+TaskTrackr-Frontend
 
 Projects List
 <img src="/public/screenshots/1-Project-List.png"><br>
