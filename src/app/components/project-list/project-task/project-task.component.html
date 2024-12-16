@@ -33,19 +33,6 @@
 
     <!-- Progress, Start Date, Due Date, and Assigned User ID -->
     <div class="text-muted">
-      <span *ngIf="!editMode">Progress: {{ projectTask.progress }}% <br /></span>
-      <div *ngIf="editMode">
-        Progress:
-        <input
-          type="number"
-          [(ngModel)]="projectTask.progress"
-          min="0"
-          max="100"
-          class="form-control form-control-sm"
-          placeholder="Progress (%)"
-        />
-      </div>
-
       <span *ngIf="!editMode && projectTask.startDate">Start Date: {{ projectTask.startDate | date: 'shortDate' }} <br /></span>
       <div *ngIf="editMode">
         Start Date:

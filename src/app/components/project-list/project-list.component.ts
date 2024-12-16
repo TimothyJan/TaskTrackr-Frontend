@@ -25,6 +25,11 @@ export class ProjectListComponent implements OnInit{
 
   ngOnInit(): void {
     this.getListOfProjectIds();
+
+    // Subscribe to changes in projects, specifically for deletion
+    this._projectService.projectsChanged$.subscribe(() => {
+      this.getListOfProjectIds();
+    });
   }
 
   /** Get list of ProjectIds */

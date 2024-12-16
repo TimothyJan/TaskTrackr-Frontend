@@ -70,6 +70,26 @@
       </div>
     </div>
 
+    <span *ngIf="!editMode && project.startDate">Start Date: {{ project.startDate | date: 'shortDate' }} <br /></span>
+    <div *ngIf="editMode">
+      Start Date:
+      <input
+        type="date"
+        [(ngModel)]="startDateString"
+        class="form-control form-control-sm"
+      />
+    </div>
+
+    <span *ngIf="!editMode && project.dueDate">Due Date: {{ project.dueDate | date: 'shortDate' }} <br /></span>
+    <div *ngIf="editMode">
+      Due Date:
+      <input
+        type="date"
+        [(ngModel)]="dueDateString"
+        class="form-control form-control-sm"
+      />
+    </div>
+
     <!-- List of Project Tasks -->
     <ul class="list-group">
       <li *ngFor="let projectTaskId of listOfProjectTaskIds" class="list-group-item">

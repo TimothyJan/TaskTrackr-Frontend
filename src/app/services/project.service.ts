@@ -11,8 +11,8 @@ export class ProjectService {
   projectsChanged$ = this.projectsChangedSource.asObservable();
 
   private projects: Project[] = [
-    new Project(1, 'Project Alpha', 'First project', 'Active'),
-    new Project(2, 'Project Beta', 'Second project', 'Completed'),
+    new Project(1, 'Project Alpha', 'First project', 'Active', new Date('2024-11-13'), new Date('2025-11-13')),
+    new Project(2, 'Project Beta', 'Second project', 'Active', new Date('2024-11-13'), new Date('2025-1-13')),
   ];
 
   constructor() {}

@@ -33,6 +33,29 @@
       </textarea>
       <div *ngIf="descriptionInvalid" class="invalid-feedback">Description is required.</div>
     </div>
+
+    <!-- Start Date and Due Date-->
+    <div class="mb-3">
+      <label for="startDate" class="form-label">Start Date</label>
+      <input
+        [(ngModel)]="startDateString"
+        type="date"
+        name="startDate"
+        class="form-control"
+        id="startDate"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="dueDate" class="form-label">Due Date</label>
+      <input
+        [(ngModel)]="dueDateString"
+        type="date"
+        name="dueDate"
+        class="form-control"
+        id="dueDate"
+      />
+    </div>
   </form>
 </div>
 

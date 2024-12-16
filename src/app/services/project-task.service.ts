@@ -11,10 +11,10 @@ export class ProjectTaskService {
   projectTasksChanged$ = this.projectTasksChangedSource.asObservable();
 
   private projectTasks: ProjectTask[] = [
-    new ProjectTask(1, 1, 'Task 1', 'Task for Project Alpha', 'Not Started', 0, new Date(), new Date(), 2),
-    new ProjectTask(2, 1, 'Task 2', 'Another Task for Project Alpha', 'Active', 50, new Date(), new Date(), 3 ),
-    new ProjectTask(3, 2, 'Task 3', 'Task for Project Beta', 'Completed', 100, new Date(), new Date(), null ),
-    new ProjectTask(4, 2, 'Task 4', 'Another Task for Project Beta', 'Active', 75, new Date(), new Date(), 1 )
+    new ProjectTask(1, 1, 'Task 1', 'Task for Project Alpha', 'Completed', 2, new Date('2024-11-13'), new Date('2024-12-13')),
+    new ProjectTask(2, 1, 'Task 2', 'Another Task for Project Alpha', 'Active', 3, new Date('2024-12-13'), new Date('2025-1-13')),
+    new ProjectTask(3, 2, 'Task 3', 'Task for Project Beta', 'Completed', 1, new Date('2025-1-13'), new Date('2025-2-13')),
+    new ProjectTask(4, 2, 'Task 4', 'Another Task for Project Beta', 'Active', 1, new Date('2024-11-13'), new Date('2025-2-13'))
   ];
 
   constructor() {}
